@@ -71,7 +71,7 @@ $commitsInfo = Microsoft.PowerShell.Utility\Select-Xml $buildInfo -XPath "/chang
 if ($commitsInfo -ne $null)
 {
     $jiraIssueKeys = Microsoft.PowerShell.Utility\Select-Xml $commitsInfo -XPath "/change/comment/text()" | 
-                    Select-String -Pattern "\b([A-Z]{2,10}-\d+)\b" -AllMatches -CaseSensitive |
+                    Select-String -Pattern "\b([A-Z0-9]{2,10}-\d+)\b" -AllMatches -CaseSensitive |
                     foreach { $_.Matches } |
                     foreach { $_.Value } |
                     select -uniq
